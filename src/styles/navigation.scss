@@ -11,6 +11,10 @@
   display: flex;
   align-items: center;
   padding: 0 32px;
+
+  @media (max-width: 600px) {
+    padding: 0 16px;
+  }
 }
 
 .nav-wrapper {
@@ -18,6 +22,10 @@
   align-items: center;
   width: 100%;
   gap: 32px;
+
+  @media (max-width: 600px) {
+    gap: 8px;
+  }
 
   &--minimal {
     justify-content: space-between;
@@ -32,6 +40,12 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-right: 16px;
+  flex-shrink: 0;
+
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    margin-right: 4px;
+  }
 }
 
 .nav-links {
@@ -39,6 +53,10 @@
   align-items: center;
   gap: 8px;
   flex: 1;
+
+  @media (max-width: 600px) {
+    gap: 2px;
+  }
 
   .nav-link-wrapper a {
     color: var(--text-muted);
@@ -48,6 +66,7 @@
     border-radius: var(--radius);
     text-decoration: none;
     transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
 
     &:hover {
       color: var(--text);
@@ -59,6 +78,11 @@
       background: rgba(12, 150, 228, 0.1);
       font-weight: 600;
     }
+
+    @media (max-width: 600px) {
+      font-size: 0.78rem;
+      padding: 6px 8px;
+    }
   }
 }
 
@@ -67,6 +91,11 @@
   align-items: center;
   gap: 12px;
   margin-left: auto;
+  flex-shrink: 0;
+
+  @media (max-width: 600px) {
+    gap: 6px;
+  }
 }
 
 .theme-toggle {
@@ -75,6 +104,7 @@
   border-radius: 50%;
   width: 38px;
   height: 38px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,13 +117,37 @@
     color: var(--warning);
     border-color: var(--warning);
   }
+
+  @media (max-width: 600px) {
+    width: 32px;
+    height: 32px;
+    font-size: 0.85rem;
+  }
 }
 
 .logout-btn {
   padding: 8px 20px !important;
   font-size: 0.9rem !important;
+  white-space: nowrap;
+
+  @media (max-width: 600px) {
+    padding: 6px 12px !important;
+    font-size: 0.78rem !important;
+  }
+}
+.nav-label-short {
+  display: none;
+
+  @media (max-width: 600px) {
+    display: inline;
+  }
 }
 
+.nav-label-full {
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
 main, .page-content {
   padding-top: 64px;
 }

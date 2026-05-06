@@ -40,10 +40,16 @@ const NavigationComponent = () => {
               <NavLink to="/clients">Home</NavLink>
             </div>
             <div className="nav-link-wrapper">
-              <NavLink to="/add-client">Add Client</NavLink>
+              <NavLink to="/add-client">
+                <span className="nav-label-full">Add Client</span>
+                <span className="nav-label-short">Add</span>
+              </NavLink>
             </div>
             <div className="nav-link-wrapper">
-              <NavLink to="/employee-manager">Employees</NavLink>
+              <NavLink to="/employee-manager">
+                <span className="nav-label-full">Employees</span>
+                <span className="nav-label-short">Staff</span>
+              </NavLink>
             </div>
           </div>
           <div className="nav-actions">
