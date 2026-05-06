@@ -4,8 +4,8 @@
 
 > If you would like to check it out you can log in with the following credentials at [https://bw-spectral-rfe.netlify.app/clients]: 
 
-  - Email: Visitor@spectral.com
-  - Password: visitor321
+  - Email: admin@spectral.com
+  - Password: admin123
 
 > List of used technologies:
 
