@@ -1,17 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { API_URL } from "../api_url/api-url"
-
-
-import { Redirect, useHistory } from "react-router-dom";
-
+import { API_URL } from "../api_url/api-url";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
 
 const AuthProvider = (props) => {
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
-  const [permissions, setPermissions] = useState("")
+  const [permissions, setPermissions] = useState("");
 
-  let history  = useHistory()
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios({
@@ -22,16 +19,16 @@ const AuthProvider = (props) => {
       .then((response) => {
         if (response.data.employees_permissions) {
           setLoggedInStatus("LOGGED_IN");
-          setPermissions(response.data.employees_permissions)
-          history.push("/clients")
+          setPermissions(response.data.employees_permissions);
+          navigate("/clients");
         } else {
-          history.push("/")
+          navigate("/");
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [history]);
+  }, []);
 
   const handleSuccessfulLogout = () => {
     axios({
@@ -41,16 +38,17 @@ const AuthProvider = (props) => {
     })
       .then(() => {
         setLoggedInStatus("NOT_LOGGED_IN");
-        history.push("/");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleSuccessfulLogin = () => {
+  const handleSuccessfulLogin = (permissionsData) => {
     setLoggedInStatus("LOGGED_IN");
-    return <Redirect to="/clients" />;
+    setPermissions(permissionsData);
+    navigate("/clients");
   };
 
   const state = {

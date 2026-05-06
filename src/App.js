@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Clients from "./components/pages/clients";
 import Login from "./components/pages/login";
 import ClientPortal from "./components/pages/client-portal";
@@ -13,57 +13,31 @@ import AuthContext from "./components/Context/AuthContext";
 function App() {
   const { loggedInStatus, permissions } = useContext(AuthContext);
 
-  const renderRoutes = () => {
-    if (loggedInStatus === "LOGGED_IN" && permissions === "Admin") {
-      return (
-        <div>
-          <Route exact path="/clients">
-            <Clients />
-          </Route>
-          <Route path="/clients/:slug">
-            <ClientPortal />
-          </Route>
-          <Route path="/data/:slug">
-            <Data />
-          </Route>
-          <Route path="/add-client">
-            <AddClient />
-          </Route>
-          <Route path="/add-client-trial/:slug">
-            <AddClientTrial />
-          </Route>
-          <Route path="/employee-manager">
-            <EmployeeManager />
-          </Route>
-        </div>
-      );
-    } else if (loggedInStatus === "LOGGED_IN") {
-      return (
-        <div>
-          <Route exact path="/clients">
-            <Clients />
-          </Route>
-          <Route path="/clients/:slug">
-            <ClientPortal />
-          </Route>
-          <Route path="/data/:slug">
-            <Data />
-          </Route>
-        </div>
-      );
-    }
-  };
-
   return (
     <div className="App">
       <NavigationComponent />
       <div>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          {renderRoutes()}
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Login />} />
+
+          {loggedInStatus === "LOGGED_IN" && (
+            <>
+              <Route path="/clients" element={<Clients />} />
+              <Route path="/clients/:slug" element={<ClientPortal />} />
+              <Route path="/data/:slug" element={<Data />} />
+            </>
+          )}
+
+          {loggedInStatus === "LOGGED_IN" && permissions === "Admin" && (
+            <>
+              <Route path="/add-client" element={<AddClient />} />
+              <Route path="/add-client-trial/:slug" element={<AddClientTrial />} />
+              <Route path="/employee-manager" element={<EmployeeManager />} />
+            </>
+          )}
+
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </div>
     </div>
   );

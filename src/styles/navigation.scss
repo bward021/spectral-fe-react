@@ -1,60 +1,99 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+}
+
 .nav-wrapper {
   display: flex;
-  width: 100%;
-  height: 100px;
-  background-color: #50CAF8;
-  justify-content: space-around;
   align-items: center;
-  box-shadow: 0 12px 11px rgba(0, 0, 0, 0.2);
-  font-size: 25px;
-  @include responsive(tab-land) {
-    font-size: 18px;
+  width: 100%;
+  gap: 32px;
+
+  &--minimal {
+    justify-content: space-between;
   }
+}
 
-  @include responsive(tab-port) {
-    font-size: 16px;
-  }
+.nav-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-right: 16px;
+}
 
-  .nav-link-wrapper{
-    a {
-      text-decoration: none;
-      color: rgb(72, 82, 109);
-      transition: 0.5s ease-in-out;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
 
-      &:hover {
-        color: antiquewhite;
-      }
+  .nav-link-wrapper a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+
+    &:hover {
+      color: var(--text);
+      background: var(--border);
     }
 
-    .active{
-      color: antiquewhite;
+    &.active {
+      color: var(--primary);
+      background: rgba(12, 150, 228, 0.1);
+      font-weight: 600;
     }
   }
+}
 
-  .logout-button{
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
 
-    button{
-      background-color: transparent;
-      color: rgb(72, 82, 109);
-      outline: none;
-      border-radius: 25px;
-      border: 1px solid rgb(72, 82, 109);
-      font-size: 25px;
-      transition: 0.5s ease-in-out;
-      
-      @include responsive(tab-land) {
-        font-size: 18px;
-      }
-    
-      @include responsive(tab-port) {
-        font-size: 16px;
-      }
+.theme-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
 
-      &:hover {
-        color: antiquewhite;
-        background-color: rgb(72, 82, 109);
-      }
-    }
-
+  &:hover {
+    color: var(--warning);
+    border-color: var(--warning);
   }
+}
+
+.logout-btn {
+  padding: 8px 20px !important;
+  font-size: 0.9rem !important;
+}
+
+main, .page-content {
+  padding-top: 64px;
 }

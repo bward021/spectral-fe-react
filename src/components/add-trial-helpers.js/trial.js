@@ -2,96 +2,81 @@ import axios from "axios";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-
 import { API_URL } from "../api_url/api-url";
 
 const Trial = (props) => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [id] = useState(props.id);
   const [isLoading, setIsLoading] = useState(false);
-  const [addAlert, setAddAlert] = useState(false); 
-
-  const handleClick = () => {
-    setIsLoading(true);
-  };
+  const [addAlert, setAddAlert] = useState(false);
 
   const handleSubmit = (e) => {
-    handleClick();
+    e.preventDefault();
+    setIsLoading(true);
     axios({
       method: "post",
-      url: `${API_URL}add-client-trial/${id}`,
-      data: {
-        name: name,
-        category: category,
-        description: description,
-      },
+      url: `${API_URL}add-client-trial/${props.id}`,
+      data: { name, category, description },
       withCredentials: true,
     })
       .then(() => {
         setName("");
         setCategory("");
         setDescription("");
-        setAddAlert(true)
-        setTimeout(() => {setAddAlert(false)}, 4000);
+        setAddAlert(true);
+        setTimeout(() => setAddAlert(false), 4000);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log("error in add trial: ", error);
+        console.log("error in add trial:", error);
+        setIsLoading(false);
       });
-
-    e.preventDefault();
   };
 
   return (
-    <div className="trial-form-wrapper">
-      <form
-        className="trial-form"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <p>Name:</p>
-        <input
-          type="text"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-          value={name}
-          required
-        />
-        <p>Category</p>
-        <select
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-          value={category}
-          required
-        >
-          <option value="" defaultValue>
-            Select Category
-          </option>
-          <option value="Motor Skills">Motor Skills</option>
-          <option value="Fine Motor Skills">Fine Motor Skills</option>
-          <option value="Critical Thinking">Critical Thinking</option>
-          <option value="Educational">Educational</option>
-        </select>
-        <p>Description</p>
-        <textarea
-          type="text"
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
-          className="trial-description"
-          value={description}
-          required
-        />
-        <button disabled={isLoading}>
-          {!isLoading ? "Submit" : <FontAwesomeIcon icon={faSpinner} spin />}
-        </button>
+    <div className="program-form-card">
+      <div className="program-form-header">
+        <h2>New Trial Program</h2>
+        <p>Discrete trial training program</p>
+      </div>
+      <form className="program-form" onSubmit={handleSubmit}>
+        <div className="pf-field">
+          <label>Program Name</label>
+          <input
+            type="text"
+            placeholder="e.g. Color Identification"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="pf-field">
+          <label>Category</label>
+          <select value={category} onChange={(e) => setCategory(e.target.value)} required>
+            <option value="">Select category</option>
+            <option value="Motor Skills">Motor Skills</option>
+            <option value="Fine Motor Skills">Fine Motor Skills</option>
+            <option value="Critical Thinking">Critical Thinking</option>
+            <option value="Educational">Educational</option>
+          </select>
+        </div>
+        <div className="pf-field">
+          <label>Description</label>
+          <textarea
+            placeholder="Describe the goal of this program..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div className="program-form-footer">
+          {addAlert && <span className="pf-success">✓ Trial program added!</span>}
+          <button className="btn-primary" type="submit" disabled={isLoading}>
+            {isLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Add Program"}
+          </button>
+        </div>
       </form>
-      <div className="added-alert">{ addAlert ? "Trial Added!" : null }</div>
     </div>
   );
 };

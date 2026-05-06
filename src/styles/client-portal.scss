@@ -1,60 +1,243 @@
-.client-portal-container{
+// ── Hero Banner ───────────────────────────────────────────────────────────────
+
+.portal-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 32px;
+  margin-bottom: 24px;
+
+  .portal-hero-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .portal-hero-info {
+    flex: 1;
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0 0 4px;
+    }
+
+    p {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+  }
+}
+
+// ── Two Column Grid ───────────────────────────────────────────────────────────
+
+.portal-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
 
-  @include responsive(tab-land) {
-    font-size: 20px;
-  }
-
-  @include responsive(tab-port) {
-    font-size: 18px;
-  }
-
-  @include responsive(phone) {
+  @media (max-width: 860px) {
     grid-template-columns: 1fr;
   }
-  
-  .client-information-wrapper{
-    display: flex;
+}
+
+// ── Shared Card Shell ─────────────────────────────────────────────────────────
+
+.portal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.portal-card-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.portal-card-body {
+  padding: 24px;
+}
+
+.frequency-graph-wrap {
+  height: 280px;
+  position: relative;
+}
+
+.graph-empty {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+// ── Programs Section ──────────────────────────────────────────────────────────
+
+.portal-trials-section {
+  margin-top: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.portal-trials-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin: 0;
   }
 
-  .client-portal-right-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    a {
-      text-decoration: none;
-      color: black;
-      border-radius: 25px;
-      padding: 20px;
-      background-color:#6cd4fa;
-      transition: 0.5s ease-in-out;
-
-      &:hover {
-        background-color: #f1f1f1;
-      }
-    }
-    
-    .graph-wrapper{
-      height: 600px;
-      width: 600px;
-
-      @include responsive(tab-land) {
-        height: 450px;
-        width: 450px;
-      }
-    
-      @include responsive(tab-port) {
-        height: 400px;
-        width: 400px;
-      }
-    
-      @include responsive(phone) {
-        height: 300px;
-        width: 300px;
-      }
-    }
-
+  .portal-trials-count {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
   }
+}
+
+.portal-trials-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.portal-trials-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-trial-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  gap: 16px;
+  transition: background 0.15s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: rgba(12, 150, 228, 0.04); }
+}
+
+.portal-trial-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+
+  .portal-trial-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .portal-trial-category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(12, 150, 228, 0.1);
+    color: var(--primary);
+  }
+
+  .portal-trial-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+}
+
+.portal-trial-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+// ── Inline Edit Form ──────────────────────────────────────────────────────────
+
+.trial-edit-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.trial-edit-fields {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+
+  input, select {
+    padding: 8px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: calc(var(--radius) * 0.6);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+    flex: 1;
+    min-width: 120px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+  }
+}
+
+.trial-edit-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
 }

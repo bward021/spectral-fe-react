@@ -1,8 +1,7 @@
 import React from "react";
 import Address from '../client-portal-helpers/address';
 
-
-const ClientInfo = (props) => {
+const ClientInfo = ({ clientInfo }) => {
   const {
     client_id,
     client_age,
@@ -10,34 +9,38 @@ const ClientInfo = (props) => {
     client_lastname,
     client_gender,
     client_supervisor,
-  } = props.clientInfo;
+  } = clientInfo;
 
   return (
-    <div className="client-information-container">
-      <h1>Client Information</h1>
-      <div className="client-info">
-        <div className="information-item-1">
-          <p>First:</p>
-          <div>{client_firstname}</div>
-        </div>
-        <div className="information-item-2">
-          <p>Last:</p>
-          <div>{client_lastname}</div>
-        </div>
-        <div className="information-item-3">
-          <p>Age:</p>
-          <div>{client_age}</div>
-        </div>
-        <div className="information-item-4">
-          <p>Gender:</p>
-          <div>{client_gender}</div>
-        </div>
-        <div className="information-item-5">
-          <p>Supervisor:</p>
-          <div>{client_supervisor}</div>
-        </div>
+    <div className="client-info-card">
+      <div className="portal-card-header">
+        <h3>Client Information</h3>
       </div>
-        <Address id={client_id}/>
+      <div className="portal-card-body">
+        <div className="client-info-grid">
+          <div className="client-info-item">
+            <span className="info-label">First Name</span>
+            <span className="info-value">{client_firstname}</span>
+          </div>
+          <div className="client-info-item">
+            <span className="info-label">Last Name</span>
+            <span className="info-value">{client_lastname}</span>
+          </div>
+          <div className="client-info-item">
+            <span className="info-label">Age</span>
+            <span className="info-value">{client_age}</span>
+          </div>
+          <div className="client-info-item">
+            <span className="info-label">Gender</span>
+            <span className="info-value">{client_gender}</span>
+          </div>
+          <div className="client-info-item">
+            <span className="info-label">Supervisor</span>
+            <span className="info-value">{client_supervisor}</span>
+          </div>
+        </div>
+        <Address id={client_id} />
+      </div>
     </div>
   );
 };

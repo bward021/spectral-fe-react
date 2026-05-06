@@ -1,107 +1,210 @@
-.employee-manager-container {
+.employee-manager-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  transition: grid-template-columns 0.3s ease;
+
+  &.form-open {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+// ── Table Card ────────────────────────────────────────────────────────────────
+
+.employee-table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.employee-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+
+  .employee-count {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+}
+
+.employee-table-header {
+  display: grid;
+  grid-template-columns: 1fr 160px 140px;
+  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+// ── Employee Rows ─────────────────────────────────────────────────────────────
+
+.employee-list {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 120px);
+}
+
+.employee-row {
+  display: grid;
+  grid-template-columns: 1fr 160px 140px;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: rgba(12, 150, 228, 0.04);
+  }
+}
+
+.employee-row-name {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .employee-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .employee-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .employee-email {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.role-admin      { background: rgba(12, 150, 228, 0.12); color: var(--primary); }
+  &.role-supervisor { background: rgba(246, 187, 0, 0.15);  color: #b38a00; }
+  &.role-therapist  { background: rgba(30, 183, 66, 0.12);  color: var(--accent); }
+  &.role-default    { background: rgba(128,128,128,0.1);    color: var(--text-muted); }
+}
+
+.employee-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+.btn-delete {
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  background: rgba(255, 51, 52, 0.08);
+  color: var(--danger);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255, 51, 52, 0.18);
+  }
+}
+
+.employees-empty {
+  padding: 48px;
   text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
 
-  .new-button {
+// ── Form Panel ────────────────────────────────────────────────────────────────
+
+.employee-form-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  align-self: start;
+  position: sticky;
+  top: 88px;
+}
+
+.form-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+
+  .form-panel-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 20px;
-    margin: 15px;
-  }
-
-  .left-column {
-    grid-area: L;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
     justify-content: center;
-    align-content: center;
-    margin-left: 30px;
+    transition: background 0.2s;
 
-    @include responsive(tab-port) {
-      flex-direction: column;
-      font-size: 15px;
-      margin: 0px;
+    &:hover {
+      background: rgba(255,255,255,0.35);
     }
-
-    @include responsive(phone) { 
-      flex-direction: column;
-      font-size: 10px;
-    }
-
-    button{
-      height: 15px;
-      width: 40px;
-      font-size: 10px;
-    }
-
-    .header {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-      width: 100%;
-      padding-bottom: 10px;
-      border-bottom: 2px solid black;
-    }
-
-    .all-employees-wrapper {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-
-      .employees-rendered {
-        display: grid;
-        width: 100%;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        padding-top: 8px;
-        padding-bottom: 8px;
-        border-radius: 50px;
-
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-    }
-  }
-
-  .right-column {
-    grid-area: R;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .employee-manager-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 15px;
-    width: 100%;
-    grid-template-areas: "L L R";
-
-    @include responsive(tab-land) {
-      font-size: 18px;
-      
-    }
-  
-    @include responsive(tab-port) {
-      font-size: 16px;
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 10px;
-      grid-template-areas: 
-        "L L"
-        "R R";
-    }
-  
-    @include responsive(phone) {
-      font-size: 13px;
-      justify-content: center;
-
-    } 
-
   }
 }

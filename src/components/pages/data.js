@@ -1,37 +1,42 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import moment from "moment";
-
+import { useParams, useNavigate } from "react-router-dom";
 import DurationData from "../data-helpers/duration-data";
 import FrequencyData from "../data-helpers/frequency-data";
 import TrialData from "../data-helpers/trial-data";
 
-const Data = (props) => {
-
-  let { slug } = useParams();
-  const [clientId] = useState(slug);
-  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
+const Data = () => {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const today = new Date().toISOString().split("T")[0];
+  const [date, setDate] = useState(today);
 
   return (
-    <div>
-      <div className="date-wrapper">
-        <input
-          type="date"
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-          value={date}
-        />
+    <div className="page-wrapper">
+      <div className="data-page-header">
+        <div className="data-page-title">
+          <h1>Data Collection</h1>
+          <p>Recording data for {date}</p>
+        </div>
+        <div className="data-page-controls">
+          <input
+            type="date"
+            className="date-input"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <button className="btn-secondary" onClick={() => navigate(-1)}>
+            ← Back
+          </button>
+        </div>
       </div>
-      <div className="data-container">
-        <div className="left-column">
-          <TrialData id={clientId} date={date} />
+
+      <div className="data-grid">
+        <div className="data-grid-main">
+          <TrialData id={slug} date={date} />
         </div>
-        <div className="bottom">
-          <FrequencyData id={clientId} date={date} />
-        </div>
-        <div className="right-column">
-          <DurationData id={clientId} date={date} />
+        <div className="data-grid-side">
+          <FrequencyData id={slug} date={date} />
+          <DurationData id={slug} date={date} />
         </div>
       </div>
     </div>

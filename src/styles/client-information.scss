@@ -1,114 +1,33 @@
-.client-information-container {
+
+.client-info-grid {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 30px;
-  padding: 15px;
-  justify-content: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.client-info-item {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  background: #F8F8F8; 
-	border: solid #BDBDBD 0; 
-  border-radius: 20px;
-	box-shadow: 0 -1px 11px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
 
-  h1{
-    border-bottom: 2px solid black;
+  &:last-child {
+    border-bottom: none;
   }
 
-  .information-item-1 {
-    grid-area: first;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
-  }
-  .information-item-2 {
-    grid-area: last;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
-  }
-  .information-item-3 {
-    grid-area: age;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
-  }
-  .information-item-4 {
-    grid-area: gender;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
-  }
-  .information-item-5{
-    grid-area: supervisor;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
+  .info-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
   }
 
-
-  .client-info{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 15px;
-    width: 85%;
-    grid-template-areas: 
-    "first first . last last"
-    ". . . . ."
-    ". . . . ."
-    ". . . . ."
-    ". . . . ."
-    "age age .  gender gender"
-    ". . . . ."
-    ". . . . ."
-    ". . . . ."
-    ". . . . ."
-    ". supervisor supervisor supervisor .";
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 25px;
-    
-    @include responsive(tab-land) {
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 5px;
-      width: 100%;
-      grid-template-areas: 
-      "first first "
-      "last last"    
-      "age age"
-      "gender gender"
-      "supervisor supervisor";
-      font-size: 16px;
-    }
+  .info-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
   }
-
-  .client-address{
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 25px;
-    font-size: 25px;
-    margin-top: 35px;
-
-    @include responsive(tab-land) {
-      width: 100%;
-      font-size: 16px;
-    }
-  }
-
 }

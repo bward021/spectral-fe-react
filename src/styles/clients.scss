@@ -1,75 +1,83 @@
-.clients-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.page-header {
+  margin-bottom: 24px;
 
-  
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+  }
 }
 
-.render-clients-wrapper {
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  align-content: center;
-  width: 75%;
-  margin: 0px;
+.clients-table {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
 
-  @include responsive(tab-port) {
-    width: 100%;
+.clients-table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px 1fr 120px;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.client-row {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+
+  &:last-child {
+    border-bottom: none;
   }
 
+  &:hover {
+    background: var(--border);
+  }
+}
 
-  a {
+.client-row-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr 80px 1fr;
+  padding: 16px 24px;
+  color: var(--text);
+  text-decoration: none;
+  gap: 8px;
+
+  &:hover {
     text-decoration: none;
-    height: 30px;
-    color: black;
-    border-radius: 15px;
-
-    &:hover{
-      background-color: aliceblue;
-    }
-    
   }
+}
 
-  .render-clients-headers {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    padding: 10px;
-    text-align: center;
-    background-color: #50CAF8;
-    border-radius: 15px;
-    font-weight: 900;
+.client-portal-btn {
+  padding: 8px 16px;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 16px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+    text-decoration: none;
   }
+}
 
-  .render-clients{
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    padding: 15px;
-    text-align: center;   
-    justify-content: center;
-    align-content: center;
-
-    .client-data-link{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-
-      @include responsive(tab-port) {
-        width: 100%;
-        padding: 0px;
-      }
-
-      @include responsive(phone) { 
-        flex-direction: column;
-      }
-
-    }
-
-
-    .client-portal-link{
-      background-color: #107aa0;
-      border-radius: 30px;
-      color: rgb(223, 222, 222);
-    }
-  }
+.clients-empty {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
 }

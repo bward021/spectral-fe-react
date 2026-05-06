@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { API_URL } from "../api_url/api-url";
 
-import { API_URL } from "../api_url/api-url"
-
-const Clients = (props) => {
-  const [loggedIn] = useState(props.loggedIn);
-  const [permissions] = useState(props.permissions);
-  // const [clientSearch, setClientSearch] = useState("*");
+const Clients = () => {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
     axios({
       method: "get",
       url: `${API_URL}clients`,
-      withCredentials: true
+      withCredentials: true,
     })
       .then((response) => {
         setClients(response.data);
@@ -28,17 +24,15 @@ const Clients = (props) => {
     return clients.map((client) => {
       const clientId = client.client_id;
       return (
-        <div key={clientId} className="render-clients">
-          <Link  to={`/data/${clientId}`}>
-            <div className="client-data-link">
-              <div>{client.client_firstname}</div>
-              <div>{client.client_lastname}</div>
-              <div>{client.client_age}</div>
-              <div>{client.client_supervisor}</div>
-            </div>
+        <div key={clientId} className="client-row">
+          <Link to={`/data/${clientId}`} className="client-row-data">
+            <div>{client.client_firstname}</div>
+            <div>{client.client_lastname}</div>
+            <div>{client.client_age}</div>
+            <div>{client.client_supervisor}</div>
           </Link>
-          <Link to={`/clients/${clientId}`}>
-            <div className="client-portal-link">CP</div>
+          <Link to={`/clients/${clientId}`} className="client-portal-btn">
+            View Portal
           </Link>
         </div>
       );
@@ -46,19 +40,23 @@ const Clients = (props) => {
   };
 
   return (
-    <div className="clients-container">
-      <h1>Clients Page</h1>
-      {loggedIn && `You are logged in as a ${permissions}`}
-      <hr />
-      <div className="render-clients-wrapper">
-        <div className="render-clients-headers">
-          <div>First</div>
-          <div>Last</div>
+    <div className="page-wrapper">
+      <div className="page-header">
+        <h1>Clients</h1>
+      </div>
+      <div className="clients-table">
+        <div className="clients-table-header">
+          <div>First Name</div>
+          <div>Last Name</div>
           <div>Age</div>
           <div>Supervisor</div>
-          <div>Client Portal</div>
+          <div>Portal</div>
         </div>
-        {renderClients()}
+        {clients.length === 0 ? (
+          <div className="clients-empty">No clients found. Add one to get started!</div>
+        ) : (
+          renderClients()
+        )}
       </div>
     </div>
   );
