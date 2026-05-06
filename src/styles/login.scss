@@ -1,23 +1,22 @@
 .login-page-container {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow: auto;
 }
 
 .login-left-column {
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
   margin-top: 64px;
   background: linear-gradient(135deg, #0C96E4 0%, #1EB742 100%);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 40px 60px 40px 0;
-  overflow: hidden;
 
   @include responsive(tab-port) {
     flex-direction: column;
     gap: 40px;
     padding: 40px 24px;
-    height: auto;
+    min-height: auto;
   }
 }
 
@@ -79,17 +78,16 @@
   border-radius: 20px;
   padding: 60px 48px;
   width: 420px;
-  height: calc(100vh - 144px);
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-shadow: 0 24px 60px rgba(0,0,0,0.2);
   flex-shrink: 0;
-  overflow: hidden;
 
   @include responsive(tab-port) {
     width: 100%;
-    height: auto;
+    padding: 40px 24px;
   }
 
   h2 {
