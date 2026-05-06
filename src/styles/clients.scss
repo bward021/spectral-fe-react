@@ -26,6 +26,16 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr 100px;
+
+    // hide Age and Supervisor headers on mobile
+    div:nth-child(3),
+    div:nth-child(4) {
+      display: none;
+    }
+  }
 }
 
 .client-row {
@@ -55,6 +65,17 @@
   &:hover {
     text-decoration: none;
   }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 14px 16px;
+
+    // hide Age and Supervisor on mobile
+    div:nth-child(3),
+    div:nth-child(4) {
+      display: none;
+    }
+  }
 }
 
 .client-portal-btn {
@@ -68,10 +89,17 @@
   text-decoration: none;
   margin-right: 16px;
   transition: opacity 0.2s;
+  white-space: nowrap;
 
   &:hover {
     opacity: 0.85;
     text-decoration: none;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.78rem;
+    padding: 8px 10px;
+    margin-right: 8px;
   }
 }
 

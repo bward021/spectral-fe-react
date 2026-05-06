@@ -6,6 +6,10 @@
 
   &.form-open {
     grid-template-columns: 1fr 380px;
+
+    @media (max-width: 860px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
@@ -43,6 +47,14 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 100px;
+
+    div:nth-child(2) {
+      display: none;
+    }
+  }
 }
 
 // ── Employee Rows ─────────────────────────────────────────────────────────────
@@ -66,6 +78,16 @@
 
   &:hover {
     background: rgba(12, 150, 228, 0.04);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr auto;
+    padding: 12px 16px;
+    gap: 8px;
+
+    .employee-row-permission {
+      display: none;
+    }
   }
 }
 
@@ -136,6 +158,11 @@
     border-color: var(--primary);
     color: var(--primary);
   }
+
+  @media (max-width: 600px) {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
 }
 
 .btn-delete {
@@ -151,6 +178,11 @@
 
   &:hover {
     background: rgba(255, 51, 52, 0.18);
+  }
+
+  @media (max-width: 600px) {
+    padding: 6px 10px;
+    font-size: 0.75rem;
   }
 }
 
@@ -172,6 +204,10 @@
   align-self: start;
   position: sticky;
   top: 88px;
+
+  @media (max-width: 860px) {
+    position: static;
+  }
 }
 
 .form-panel-header {
