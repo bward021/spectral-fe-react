@@ -10,7 +10,7 @@ const AuthProvider = (props) => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+useEffect(() => {
     axios({
       method: "get",
       url: `${API_URL}api/v1/logged-in`,
@@ -28,6 +28,7 @@ const AuthProvider = (props) => {
       .catch((error) => {
         console.log(error);
       });
+  // eslint-disable-next-line
   }, []);
 
   const handleSuccessfulLogout = () => {

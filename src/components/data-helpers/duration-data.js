@@ -14,7 +14,7 @@ const DurationData = (props) => {
     })
       .then((response) => setDurationData(response.data))
       .catch((error) => console.log("error in DurationData:", error));
-  }, []);
+  }, [props.id])
 
   return (
     <div className="side-data-card">
