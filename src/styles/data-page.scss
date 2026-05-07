@@ -156,6 +156,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .trial-select-prompt {
@@ -196,6 +200,7 @@
 
   @media (max-width: 600px) {
     gap: 8px;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
@@ -256,7 +261,6 @@
     }
 
     @media (max-width: 600px) {
-      padding: 12px 8px;
 
       .counter-label {
         font-size: 0.62rem;
@@ -310,6 +314,10 @@
       color: #fff;
     }
   }
+  
+    @media (max-width: 600px) {
+      padding: 6px 6px 4px 6px;
+    }
 }
 
 // ── Progress Bar ──────────────────────────────────────────────────────────────
